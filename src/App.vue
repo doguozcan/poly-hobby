@@ -44,6 +44,19 @@ watch(name, (newName) => {
 onMounted(() => {
   name.value = localStorage.getItem('name') || ''
 })
+
+const categoryClass = (category) => {
+  switch (category) {
+    case 'Science':
+      return 'category-science'
+    case 'Sport':
+      return 'category-sport'
+    case 'Art':
+      return 'category-art'
+    default:
+      return ''
+  }
+}
 </script>
 
 <template>
@@ -60,9 +73,14 @@ onMounted(() => {
       </option>
     </select>
     <button v-on:click="appendHobby">submit</button>
-    <li v-for="hobby in reversedHobbies">
-      {{ hobby.category }} - {{ hobby.activity }}
-    </li>
+    <ul>
+      <li
+        v-for="hobby in reversedHobbies"
+        :class="categoryClass(hobby.category)"
+      >
+        {{ hobby.category }} - {{ hobby.activity }}
+      </li>
+    </ul>
   </body>
 </template>
 
