@@ -31,6 +31,15 @@ const appendHobby = () => {
   }
 }
 
+// remove hobby from hobbies array
+const deleteHobby = (hobby) => {
+  const index = hobbies.value.indexOf(hobby)
+
+  if (index !== -1) {
+    hobbies.value.splice(index, 1)
+  }
+}
+
 // user's name
 const name = ref('')
 
@@ -82,13 +91,14 @@ const categoryClass = (category) => {
         {{ category }}
       </option>
     </select>
-    <button v-on:click="appendHobby">submit</button>
+    <button v-on:click="appendHobby" class="submit">submit</button>
     <ul>
       <li
         v-for="hobby in reversedHobbies"
         :class="categoryClass(hobby.category)"
       >
         {{ hobby.category }} - {{ hobby.activity }}
+        <button class="delete" @click="deleteHobby(hobby)">delete</button>
       </li>
     </ul>
   </body>
