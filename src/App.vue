@@ -17,6 +17,20 @@ const activity = ref('')
 
 // reactive and mutable ref object for the category
 const selectedCategory = ref('')
+
+const appendHobby = () => {
+  if (activity.value && selectedCategory.value) {
+    hobbies.value.push({
+      category: selectedCategory.value,
+      activity: activity.value,
+    })
+
+    selectedCategory.value = ''
+    activity.value = ''
+  } else {
+    alert('Please enter both activity and category values.')
+  }
+}
 </script>
 
 <template>
@@ -27,6 +41,7 @@ const selectedCategory = ref('')
       {{ category }}
     </option>
   </select>
+  <button v-on:click="appendHobby">submit</button>
   <li v-for="hobby in hobbies">{{ hobby.category }} - {{ hobby.activity }}</li>
 </template>
 
