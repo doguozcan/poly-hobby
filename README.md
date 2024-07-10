@@ -6,3 +6,13 @@ Poly Hobby is my first Vue application that I've built to learn the essentials s
 
 ## Screenshot
 ![poly-hobby](https://github.com/doguozcan/poly-hobby/assets/76822280/1aed129f-fbc4-4e26-ac97-f8b7241bc83c)
+
+## Technologies used
+
+- **<a href="https://vuejs.org/">Vue</a>**
+- **<a href="https://vitejs.dev/">Vite</a>**
+- **<a href="https://developer.mozilla.org/en-US/docs/Web/CSS">CSS</a>**
+
+## Live Preview
+
+- You can visit <a href="https://magical-quokka-48ebf6.netlify.app/">the live preview</a>
