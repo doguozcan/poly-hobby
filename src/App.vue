@@ -1,18 +1,19 @@
 <script setup>
 import { ref, computed, watch, onMounted } from 'vue'
+
+// array where categories are stored
+const categories = ['Science', 'Sport', 'Art']
+
 // hobbies array
 const hobbies = ref([
-  { category: 'Computer Science', activity: 'Code a webpage with vue.' },
-  { category: 'Basketball', activity: 'Do a shooting training.' },
-  { category: 'Movies', activity: 'Watch Rocky.' },
-  { category: 'Basketball', activity: 'Watch an NBA game.' },
-  { category: 'Computer Science', activity: 'Train competitive programming.' },
+  { category: 'Science', activity: 'Make researchs on birds.' },
+  { category: 'Sport', activity: 'Do a basketball shooting training.' },
+  { category: 'Art', activity: 'Watch Rocky.' },
+  { category: 'Sport', activity: 'Watch an NBA game.' },
+  { category: 'Art', activity: 'Watch Twilight.' },
 ])
 
 const reversedHobbies = computed(() => [...hobbies.value].reverse())
-
-// array where categories are stored
-const categories = ['Computer Science', 'Basketball', 'Movies']
 
 // reactive and mutable ref object for the activity
 const activity = ref('')
@@ -46,18 +47,23 @@ onMounted(() => {
 </script>
 
 <template>
-  <h1>Poly Hobby</h1>
-  <h2>Welcome <input placeholder="enter your name" v-model="name" /></h2>
-  <input v-model="activity" placeholder="Enter your activity" />
-  <select v-model="selectedCategory">
-    <option v-for="category in categories">
-      {{ category }}
-    </option>
-  </select>
-  <button v-on:click="appendHobby">submit</button>
-  <li v-for="hobby in reversedHobbies">
-    {{ hobby.category }} - {{ hobby.activity }}
-  </li>
+  <body>
+    <h1>Poly Hobby</h1>
+    <div class="greeting">
+      <h2>Welcome</h2>
+      <input placeholder="john doe" v-model="name" />
+    </div>
+    <input v-model="activity" placeholder="Enter your activity" />
+    <select v-model="selectedCategory">
+      <option v-for="category in categories">
+        {{ category }}
+      </option>
+    </select>
+    <button v-on:click="appendHobby">submit</button>
+    <li v-for="hobby in reversedHobbies">
+      {{ hobby.category }} - {{ hobby.activity }}
+    </li>
+  </body>
 </template>
 
 <style></style>
