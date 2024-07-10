@@ -24,6 +24,7 @@ const appendHobby = () => {
       activity: activity.value,
     })
 
+    // after addition, remove category and activity values
     selectedCategory.value = ''
     activity.value = ''
   } else {
@@ -103,5 +104,3 @@ const categoryClass = (category) => {
     </ul>
   </body>
 </template>
-
-<style></style>
