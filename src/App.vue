@@ -1,5 +1,5 @@
 <script setup>
-import { ref } from 'vue'
+import { ref, computed } from 'vue'
 // hobbies array
 const hobbies = ref([
   { category: 'Computer Science', activity: 'Code a webpage with vue.' },
@@ -8,6 +8,8 @@ const hobbies = ref([
   { category: 'Basketball', activity: 'Watch an NBA game.' },
   { category: 'Computer Science', activity: 'Train competitive programming.' },
 ])
+
+const reversedHobbies = computed(() => [...hobbies.value].reverse())
 
 // array where categories are stored
 const categories = ['Computer Science', 'Basketball', 'Movies']
@@ -42,7 +44,9 @@ const appendHobby = () => {
     </option>
   </select>
   <button v-on:click="appendHobby">submit</button>
-  <li v-for="hobby in hobbies">{{ hobby.category }} - {{ hobby.activity }}</li>
+  <li v-for="hobby in reversedHobbies">
+    {{ hobby.category }} - {{ hobby.activity }}
+  </li>
 </template>
 
 <style></style>
