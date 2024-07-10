@@ -1,5 +1,5 @@
 <script setup>
-import { ref, computed } from 'vue'
+import { ref, computed, watch, onMounted } from 'vue'
 // hobbies array
 const hobbies = ref([
   { category: 'Computer Science', activity: 'Code a webpage with vue.' },
@@ -33,10 +33,21 @@ const appendHobby = () => {
     alert('Please enter both activity and category values.')
   }
 }
+
+const name = ref('')
+
+watch(name, (newName) => {
+  localStorage.setItem('name', newName)
+})
+
+onMounted(() => {
+  name.value = localStorage.getItem('name') || ''
+})
 </script>
 
 <template>
   <h1>Poly Hobby</h1>
+  <h2>Welcome <input placeholder="enter your name" v-model="name" /></h2>
   <input v-model="activity" placeholder="Enter your activity" />
   <select v-model="selectedCategory">
     <option v-for="category in categories">
