@@ -5,14 +5,9 @@ import { ref, computed, watch, onMounted } from 'vue'
 const categories = ['Science', 'Sport', 'Art']
 
 // hobbies array
-const hobbies = ref([
-  { category: 'Science', activity: 'Make researchs on birds.' },
-  { category: 'Sport', activity: 'Do a basketball shooting training.' },
-  { category: 'Art', activity: 'Watch Rocky.' },
-  { category: 'Sport', activity: 'Watch an NBA game.' },
-  { category: 'Art', activity: 'Watch Twilight.' },
-])
+const hobbies = ref([])
 
+// most recent added hobby is displayed first
 const reversedHobbies = computed(() => [...hobbies.value].reverse())
 
 // reactive and mutable ref object for the activity
@@ -21,6 +16,7 @@ const activity = ref('')
 // reactive and mutable ref object for the category
 const selectedCategory = ref('')
 
+// function that adds hobby's category and activity type
 const appendHobby = () => {
   if (activity.value && selectedCategory.value) {
     hobbies.value.push({
@@ -35,16 +31,30 @@ const appendHobby = () => {
   }
 }
 
+// user's name
 const name = ref('')
 
+// save user's name to local storage
 watch(name, (newName) => {
   localStorage.setItem('name', newName)
 })
 
+// save hobbies to local storage
+watch(
+  hobbies,
+  (newHobbies) => {
+    localStorage.setItem('hobbies', JSON.stringify(newHobbies))
+  },
+  { deep: true }
+)
+
+// when refresh, get values from local storage
 onMounted(() => {
   name.value = localStorage.getItem('name') || ''
+  hobbies.value = JSON.parse(localStorage.getItem('hobbies') || '[]')
 })
 
+// seperate categories by colors
 const categoryClass = (category) => {
   switch (category) {
     case 'Science':
